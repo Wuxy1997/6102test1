@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  # MongoDB服务
+  mongodb:
+    image: mongo:latest
+    container_name: health_fitness_mongodb
+    restart: always
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    ports:
+      - "27017:27017"
+    networks:
+      - app_network
+
+  # 后端服务
+  backend:
+    build: ./backend
+    container_name: health_fitness_backend
+    restart: always
+    volumes:
+      - ./backend:/app
+    environment:
+      - MONGO_URI=mongodb://admin:password@mongodb:27017/health_fitness_app?authSource=admin
+      - SECRET_KEY=your_secret_key
+      - JWT_SECRET_KEY=your_jwt_secret_key
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+    networks:
+      - app_network
+
+  # 前端服务
+  frontend:
+    build: ./frontend
+    container_name: health_fitness_frontend
+    restart: always
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - app_network
+
+# 定义数据卷
+volumes:
+  mongodb_data:
+    driver: local
+
+# 定义网络
+networks:
+  app_network:
+    driver: bridge
