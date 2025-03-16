@@ -38,24 +38,10 @@ const HomePage = () => {
   return (
     <div className="bg-white">
       <div className="relative overflow-hidden">
-        <div className="absolute inset-y-0 h-full w-full" aria-hidden="true">
-          <div className="relative h-full">
-            <svg className="absolute right-full transform translate-y-1/3 translate-x-1/4 md:translate-y-1/2 sm:translate-x-1/2 lg:translate-x-full" width="404" height="784" fill="none" viewBox="0 0 404 784">
-              <defs>
-                <pattern id="e229dbec-10e9-49ee-8ec3-0286ca089edf" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <rect x="0" y="0" width="4" height="4" className="text-gray-200" fill="currentColor" />
-                </pattern>
-              </defs>
-              <rect width="404" height="784" fill="url(#e229dbec-10e9-49ee-8ec3-0286ca089edf)" />
-            </svg>
-            <svg className="absolute left-full transform -translate-y-3/4 -translate-x-1/4 sm:-translate-x-1/2 md:-translate-y-1/2 lg:-translate-x-3/4" width="404" height="784" fill="none" viewBox="0 0 404 784">
-              <defs>
-                <pattern id="d2a68204-c383-44b1-b99f-42ccff4e5365" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <rect x="0" y="0" width="4" height="4" className="text-gray-200" fill="currentColor" />
-                </pattern>
-              </defs>
-              <rect width="404" height="784" fill="url(#d2a68204-c383-44b1-b99f-42ccff4e5365)" />
-            </svg>
+        {/* 滚动动画部分 */}
+        <div className="animate-scroll bg-gray-200 h-20 w-full">
+          <div className="flex items-center justify-center h-full text-gray-700">
+            <p className="text-lg font-medium">欢迎使用健康运动助手！记录您的运动和身体数据，获取个性化建议。</p>
           </div>
         </div>
 
